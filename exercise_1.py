@@ -1,5 +1,11 @@
 import csv
-with open('https://raw.githubusercontent.com/woocommerce/woocommerce/master/sample-data/sample_products.csv', newline='') as f:
-    reader = csv.reader(f)
-    for row in reader:
-        print(row)
+import re
+import os
+import sys
+
+filepath = input("Enter csv file path:")
+with open(filepath, 'r') as f_read, open('output.csv', 'w', newline='') as f_write:
+    writer = csv.writer(f_write, delimiter=',')
+    for row in csv.reader(f_read):
+        if row[25]:
+            writer.writerow(row)
